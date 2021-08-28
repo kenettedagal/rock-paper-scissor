@@ -5,9 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
 </head>
 <body>
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissor">Scissor</button>
+    <div id='result'>Hey</div>
+
     <script>
+        const rock = document.querySelector('#rock');
+        const paper = document.querySelector('#paper');
+        const scissor = document.querySelector('#scissor');
+        
+        const div_result = document.querySelector('#result');
+
         function computerPlay(){
            // Returns a random integer from 1 to 3:
             let computerChoice = Math.floor(Math.random() * 3) + 1; 
@@ -38,18 +50,46 @@
             else return "Its a tie!";
 
         }
+
         
+        rock.addEventListener('click', function(){ 
         
-        
-        function game(){
-            for(let i = 0; i < 5; i++){
-                let playerSelection = prompt("Enter your weapon: rock, paper, scissor");
-                let computerSelection = computerPlay();
-                console.log(playRound(playerSelection, computerSelection));
+        div_result.textContent = (playRound('rock', computerPlay()));
     
-            }
-        }
-        game();
+        });
+        paper.addEventListener('click', function(){ 
+
+        div_result.textContent = (playRound('paper', computerPlay()));
+         
+
+        });
+        scissor.addEventListener('click', function(){ 
+
+        div_result.textContent = (playRound('scissor', computerPlay()));
+        
+
+        });
+
+        
+        const body = document.querySelector('body');
+        body.appendChild(div_result);
+
+        
+        
+        
+        
+        // function game(){
+        //     for(let i = 0; i < 5; i++){
+                
+
+        //         div_result.textContent("")
+        //         console.log(playRound(playerSelection, computerSelection));
+    
+        //     }
+        // }
+        // game();
+
+        
     </script>
 </body>
 </html>
