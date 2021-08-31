@@ -11,7 +11,9 @@
     <button id="rock">Rock</button>
     <button id="paper">Paper</button>
     <button id="scissor">Scissor</button>
-    <div id='result'>Hey</div>
+    <div id='result'>Result</div>
+    <div id="scoreP">Player Score: 0</div>
+    <div id="scoreC">Computer Score: 0</div>
 
     <script>
         const rock = document.querySelector('#rock');
@@ -19,6 +21,9 @@
         const scissor = document.querySelector('#scissor');
         
         const div_result = document.querySelector('#result');
+        const div_playerScore = document.querySelector('#scoreP');
+        const div_compScore = document.querySelector('#scoreC');
+
 
         function computerPlay(){
            // Returns a random integer from 1 to 3:
@@ -50,23 +55,45 @@
             else return "Its a tie!";
 
         }
+        let playerScore = 0;
+        let comScore = 0;
+        function addScore(result){
+             if(result.includes("win")){
+                playerScore++;
+                div_playerScore.textContent = 'Player Score: ' +playerScore;
+                document.body.appendChild(div_playerScore);
+            }
+            else if(result.includes("lose")){
+                comScore++;
+                div_compScore.textContent = 'Computer Score: ' +comScore;
+                document.body.appendChild(div_compScore);
+            }        
+        }
 
+        function checkWinner(){
+            if(playerScore === 5){
+                div_result.textContent = 'Player wins!';
+            }
+            else if(comScore === 5) {
+                div_result.textContent = 'Computer wins!';
+            }
+        }
         
         rock.addEventListener('click', function(){ 
-        
-        div_result.textContent = (playRound('rock', computerPlay()));
-    
+            addScore(div_result.textContent = (playRound('rock', computerPlay())));
+            checkWinner();
         });
+        
         paper.addEventListener('click', function(){ 
 
-        div_result.textContent = (playRound('paper', computerPlay()));
-         
+            addScore(div_result.textContent = (playRound('paper', computerPlay())));
+            checkWinner();
 
         });
         scissor.addEventListener('click', function(){ 
 
-        div_result.textContent = (playRound('scissor', computerPlay()));
-        
+            addScore(div_result.textContent = (playRound('scissor', computerPlay())));
+            checkWinner();
 
         });
 
